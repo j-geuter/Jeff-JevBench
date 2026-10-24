@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends gcc libc6-dev g
 WORKDIR /app
 COPY requirements.txt entrypoint.sh ./
 COPY wheels/ /wheels/
-# The server release. Before it is public, build with --build-arg JEFF=/wheels/<the jeff wheel> (see README).
+# The server release (or a local wheel: put it in wheels/ and build with --build-arg JEFF=/wheels/<the wheel>).
 ARG JEFF="jeff @ git+https://github.com/j-geuter/Jeff@v1.2.0"
 RUN pip install -r requirements.txt && pip install --no-deps "$JEFF" && jeff-serve --help > /dev/null
 EXPOSE 8013
