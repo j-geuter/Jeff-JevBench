@@ -71,9 +71,4 @@ The response holds `answers` (`route.choice` should be `billing`), `usage` with 
 - The public serving code ([j-geuter/Jeff](https://github.com/j-geuter/Jeff)) has more options (batching, vLLM for the
   reasoning, other limits) and other defaults; this repository fixes the settings of our JevBench results.
 
-## Building before the release is public
-
-Until `j-geuter/Jeff` v1.2.0 is public, build a wheel of that release (`pip wheel --no-deps -w wheels/ <jeff-serve at
-v1.2.0>`) and pass it: `docker build --build-arg JEFF=/wheels/jeff-1.2.0-py3-none-any.whl -t jeff-jevbench .`
-
 License: Apache-2.0 (LICENSE, NOTICE). The model weights have their own licenses (see the model cards).
