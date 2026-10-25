@@ -1,20 +1,12 @@
 # Jeff 1.1 for JevBench
 
-This repository serves the Jeff 1.1 decision models with the settings we submit to JevBench. It contains no model code
-of its own: it installs our serving code, [jeff-serve](https://github.com/j-geuter/Jeff), at the release we tested
-(v1.2.0), and starts it with these settings, which cannot be changed from the command line:
+This repo serves Jeff 1.1 models for submission to JevBench. It contains no model code, and instead installs our serving code, [jeff-serve](https://github.com/j-geuter/Jeff), at the release we tested
+(v1.2.0). It also includes the following JevBench defaults:
 
-- **Reasoning when unsure** (`--reasoning on`): every question is first answered in one forward pass. If the
-  model's calibrated confidence is below a threshold for the question's type, the base model writes a short reasoning
-  (at most 512 tokens; 256 for the 4B model) and the model answers again after reading it.
-- **JevBench limits** (`--jevbench-limits on`), which keep the model within the board's cost and latency caps:
-  - the mean number of output tokens per question, over everything the server has answered, never exceeds a limit
-    (Jeff-1.1-Large and Jeff-1.1-Qwen-27B: 35; Jeff-1.1-Medium: 224; Jeff-1.1-Qwen-4B: 143);
-  - no new reasoning while more than 45% of the last 1,000 questions reasoned (after the first 100);
-  - no new reasoning once a request has taken 30 seconds.
-- **The reasoning is written by transformers**, from the weights the model already has in memory (the released weights
-  with the shipped LoRA adapter removed). The GPU needs no memory beyond the model's own (table below).
-- **One request at a time**, as JevBench sends them; no batching.
+- **Reasoning when unsure** (`--reasoning on`)
+- **JevBench limits** (`--jevbench-limits on`), which keep the model within the board's cost and latency caps
+- **The reasoning is written by transformers**, instead of using vLLM
+- **One request at a time**, as JevBench sends them; no batching
 
 The output tokens of each answer are reported in `usage.output_tokens`.
 
