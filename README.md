@@ -1,29 +1,15 @@
 # Jeff 1.1 for JevBench
 
-This repository serves the Jeff 1.1 decision models with the settings we submit to JevBench. It contains no model code
-of its own: it installs our serving code, [jeff-serve](https://github.com/j-geuter/Jeff), at the release we tested
-(v1.4.0), and starts it with these settings, which cannot be changed from the command line:
+This repo serves Jeff 1.1 models for submission to JevBench. It contains no model code, and instead installs our serving code, [jeff-serve](https://github.com/j-geuter/Jeff), at the release we tested
+(v1.4.0). It also includes the following JevBench defaults:
 
-- **Reasoning when unsure** (`--reasoning on`): every question is first answered in one forward pass. If the
-  model's calibrated confidence is below a threshold for the question's type, the base model writes a short reasoning
-  and the model answers again after reading it. The reasoning settings we chose for JevBench are in `settings/`
-  (Jeff-1.1-Large: at most 128 tokens; Jeff-1.1-Medium: 256; Jeff-1.1-Qwen-4B: 256); Jeff-1.1-Qwen-27B uses its
-  released settings (512).
-- **JevBench limits** (`--jevbench-limits on`), which keep the model within the board's limits:
-  - **every decision is answered within 8.5 s** of the request's arrival (JevBench counts a decision over 10 s as
-    failed): a reasoning is stopped early enough to be read in time, and the model answers after reading what it
-    wrote so far; a reasoning that cannot start in time is skipped, and the question keeps its one-pass answer;
-  - the mean number of output tokens per question, over everything the server has answered, never exceeds a limit
-    (Jeff-1.1-Large and Jeff-1.1-Qwen-27B: 35; Jeff-1.1-Medium: 224; Jeff-1.1-Qwen-4B: 143);
-  - no new reasoning while more than 45% of the last 1,000 questions reasoned (after the first 100).
-- **Compiled reasoning** (`--fast-reasoning auto`): the step that writes the reasoning is compiled at startup, so
-  the reasoning is written 1.7-5x faster and more reasonings finish in time. With memory for the model twice, the base
-  model's weights are kept as a second copy; otherwise the adapter is removed inside the compiled step (a few GB
-  more). Compiling takes about 4 minutes for Jeff-1.1-Large and 2 to 3 minutes for Jeff-1.1-Medium (H100), before the
-  server answers; prompts over 4,096 tokens reason without it, so nothing compiles while serving.
-  `JEFF_FAST_REASONING=off` (`docker run -e JEFF_FAST_REASONING=off ...`) skips the compilation: the server starts
-  sooner, and fewer reasonings finish in time.
-- **One request at a time**, as JevBench sends them; no batching.
+- **Reasoning when unsure** (`--reasoning on`), with the reasoning settings we chose for JevBench (`settings/`)
+- **JevBench limits** (`--jevbench-limits on`), which keep the model within the board's cost and latency caps and
+  answer every decision within 8.5 s (JevBench counts a decision over 10 s as failed)
+- **The reasoning is written by transformers**, instead of using vLLM
+- **Compiled reasoning** (`--fast-reasoning auto`), so more reasonings finish in time; compiling takes 2 to 4 minutes
+  at startup, and `JEFF_FAST_REASONING=off` (`docker run -e JEFF_FAST_REASONING=off ...`) skips it
+- **One request at a time**, as JevBench sends them; no batching
 
 The output tokens of each answer are reported in `usage.output_tokens`.
 
@@ -73,13 +59,5 @@ curl -s http://127.0.0.1:8013/v1/systemone -H 'Content-Type: application/json' -
 
 The response holds `answers` (`route.choice` should be `billing`), `usage` with the input and output tokens, and
 `runtime` with the settings above (`runtime.reasoning`).
-
-## Notes
-
-- Yes/no answers between 0.2 and 0.8 are moved to 0.199 or 0.801 (JevBench counts that band as wrong).
-- Inputs over 8,192 tokens keep their question-relevant parts; questions with more than 16 options (up to 256) are
-  answered in groups of 16.
-- The public serving code ([j-geuter/Jeff](https://github.com/j-geuter/Jeff)) has more options (batching, vLLM for the
-  reasoning, other limits) and other defaults; this repository fixes the settings of our JevBench results.
 
 License: Apache-2.0 (LICENSE, NOTICE). The model weights have their own licenses (see the model cards).
