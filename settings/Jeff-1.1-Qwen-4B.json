@@ -12,6 +12,7 @@
   "noul": 0.1,
   "score": 0.6
  },
+ "read_partial": true,
  "jevbench_limits": {
   "decision_seconds": 8.5,
   "max_output_per_decision": 143,

@@ -1,17 +1,18 @@
 {
- "budget": 512,
- "read": "head",
- "mix": false,
+ "budget": 256,
+ "read": "letters",
+ "mix": true,
  "temperatures": {
-  "choice": 2.0012754168135167,
-  "noul": 4.368533251715696,
-  "score": 2.554190915963595
+  "choice": 1.0,
+  "noul": 2.2064061470369025,
+  "score": 1.0
  },
  "share": {
-  "choice": 0.2,
-  "noul": 0.6,
-  "score": 0.3
+  "choice": 0.0,
+  "noul": 0.1,
+  "score": 0.6
  },
+ "read_partial": true,
  "jevbench_limits": {
   "decision_seconds": 8.5,
   "max_output_per_decision": 224,

@@ -1,7 +1,7 @@
 # Jeff 1.1 for JevBench: jeff-serve v1.4.0 (the release we tested) with the settings we submit: reasoning when unsure,
-# with the JevBench limits (every decision within 9 s) and the reasoning settings in settings/. The reasoning is written
-# by transformers from the release's own weights and adapter (with a second copy of the base weights when the GPU has
-# room for it); requests are served one at a time.
+# with the JevBench limits (every decision within 8.5 s) and the reasoning settings in settings/. The reasoning is
+# written by transformers from the release's own weights and adapter, in a step compiled at startup (with a second copy
+# of the base weights when the GPU has room for it); requests are served one at a time.
 # The CUDA runtime comes with the torch wheel; the host needs an NVIDIA driver for CUDA 13.0 (R580 or newer).
 FROM python:3.12-slim
 ENV PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1 TOKENIZERS_PARALLELISM=false

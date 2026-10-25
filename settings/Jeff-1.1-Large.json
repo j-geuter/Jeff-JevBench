@@ -1,17 +1,18 @@
 {
- "budget": 256,
+ "budget": 128,
  "read": "letters",
  "mix": true,
  "temperatures": {
   "choice": 1.0,
   "noul": 1.0,
-  "score": 1.2900399774854812
+  "score": 1.3545419763597555
  },
  "share": {
   "choice": 0.0,
   "noul": 0.2,
   "score": 0.6
  },
+ "read_partial": true,
  "jevbench_limits": {
   "decision_seconds": 8.5,
   "max_output_per_decision": 35,
