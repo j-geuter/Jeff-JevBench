@@ -1,0 +1,21 @@
+{
+ "budget": 256,
+ "read": "letters",
+ "mix": true,
+ "temperatures": {
+  "choice": 1.0,
+  "noul": 1.0,
+  "score": 1.2900399774854812
+ },
+ "share": {
+  "choice": 0.0,
+  "noul": 0.2,
+  "score": 0.6
+ },
+ "jevbench_limits": {
+  "decision_seconds": 8.5,
+  "max_output_per_decision": 35,
+  "max_share": 0.45,
+  "request_seconds": 30.0
+ }
+}
