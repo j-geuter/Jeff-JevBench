@@ -20,10 +20,10 @@ The output tokens of each answer are reported in `usage.output_tokens`.
 
 | Model | Base model | Download | GPU memory | Revision |
 |---|---|---|---|---|
-| [jgeuter/Jeff-1.1-Large](https://huggingface.co/jgeuter/Jeff-1.1-Large) | Gemma 4 31B | 64 GB | 80 GB | `REVISION-LARGE` |
-| [jgeuter/Jeff-1.1-Qwen-27B](https://huggingface.co/jgeuter/Jeff-1.1-Qwen-27B) | Qwen3.6-27B | 56 GB | 80 GB | `0cf777cd7b0374c8ad8889d9119140f2b155dde0` |
-| [jgeuter/Jeff-1.1-Medium](https://huggingface.co/jgeuter/Jeff-1.1-Medium) | Gemma 4 12B | 26 GB | 40 GB | `ace18a2a82406f75b81c5a91ed7d28c0b1846ee5` |
-| [jgeuter/Jeff-1.1-Qwen-4B](https://huggingface.co/jgeuter/Jeff-1.1-Qwen-4B) | Qwen3.5-4B | 9 GB | 16 GB | `205c57af3a84ca8634b638880d7f01e0e5489c08` |
+| [jgeuter/Jeff-1.1-Large](https://huggingface.co/jgeuter/Jeff-1.1-Large) | Gemma 4 31B | 64 GB | 80 GB | `970c21af246a44c5527f7109fca129ab6015c941` |
+| [jgeuter/Jeff-1.1-Qwen-27B](https://huggingface.co/jgeuter/Jeff-1.1-Qwen-27B) | Qwen3.6-27B | 56 GB | 80 GB | `8c2553e7f8262e00c4157564ebedf9d35e36db23` |
+| [jgeuter/Jeff-1.1-Medium](https://huggingface.co/jgeuter/Jeff-1.1-Medium) | Gemma 4 12B | 26 GB | 40 GB | `540c40924dd67c715d3367309ba6744bac754b00` |
+| [jgeuter/Jeff-1.1-Qwen-4B](https://huggingface.co/jgeuter/Jeff-1.1-Qwen-4B) | Qwen3.5-4B | 9 GB | 16 GB | `5401940b5a8c959cba82187ebfa2dce5a21abc0a` |
 
 ## Run with Docker
 
@@ -31,7 +31,7 @@ Download the weights first, to any folder with enough space (`hf` comes with `pi
 
 ```bash
 export JEFF_DIR=$HOME/models/Jeff-1.1-Large
-hf download jgeuter/Jeff-1.1-Large --revision REVISION-LARGE --local-dir "$JEFF_DIR"
+hf download jgeuter/Jeff-1.1-Large --revision 970c21af246a44c5527f7109fca129ab6015c941 --local-dir "$JEFF_DIR"
 docker build -t jeff-jevbench .
 docker run --gpus '"device=0"' -v "$JEFF_DIR":/model:ro -p 127.0.0.1:8013:8013 jeff-jevbench
 ```
@@ -47,7 +47,7 @@ Python 3.12 and a C compiler (e.g. `gcc`; Triton, which torch uses, compiles a s
 ```bash
 pip install -r requirements.txt
 pip install --no-deps "jeff @ git+https://github.com/j-geuter/Jeff@v1.2.0"
-./entrypoint.sh jgeuter/Jeff-1.1-Large --revision REVISION-LARGE --host 127.0.0.1 --port 8013
+./entrypoint.sh jgeuter/Jeff-1.1-Large --revision 970c21af246a44c5527f7109fca129ab6015c941 --host 127.0.0.1 --port 8013
 ```
 
 ## Check it
