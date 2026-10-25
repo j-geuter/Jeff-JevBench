@@ -21,9 +21,9 @@ The output tokens of each answer are reported in `usage.output_tokens`.
 | Model | Base model | Download | GPU memory | Revision |
 |---|---|---|---|---|
 | [jgeuter/Jeff-1.1-Large](https://huggingface.co/jgeuter/Jeff-1.1-Large) | Gemma 4 31B | 64 GB | 80 GB | `REVISION-LARGE` |
-| [jgeuter/Jeff-1.1-Qwen-27B](https://huggingface.co/jgeuter/Jeff-1.1-Qwen-27B) | Qwen3.6-27B | 56 GB | 80 GB | `REVISION-QWEN27B` |
-| [jgeuter/Jeff-1.1-Medium](https://huggingface.co/jgeuter/Jeff-1.1-Medium) | Gemma 4 12B | 26 GB | 40 GB | `REVISION-MEDIUM` |
-| [jgeuter/Jeff-1.1-Qwen-4B](https://huggingface.co/jgeuter/Jeff-1.1-Qwen-4B) | Qwen3.5-4B | 9 GB | 16 GB | `REVISION-QWEN4B` |
+| [jgeuter/Jeff-1.1-Qwen-27B](https://huggingface.co/jgeuter/Jeff-1.1-Qwen-27B) | Qwen3.6-27B | 56 GB | 80 GB | `0cf777cd7b0374c8ad8889d9119140f2b155dde0` |
+| [jgeuter/Jeff-1.1-Medium](https://huggingface.co/jgeuter/Jeff-1.1-Medium) | Gemma 4 12B | 26 GB | 40 GB | `ace18a2a82406f75b81c5a91ed7d28c0b1846ee5` |
+| [jgeuter/Jeff-1.1-Qwen-4B](https://huggingface.co/jgeuter/Jeff-1.1-Qwen-4B) | Qwen3.5-4B | 9 GB | 16 GB | `205c57af3a84ca8634b638880d7f01e0e5489c08` |
 
 ## Run with Docker
 
