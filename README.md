@@ -55,12 +55,4 @@ curl -s http://127.0.0.1:8013/v1/systemone -H 'Content-Type: application/json' -
 The response holds `answers` (`route.choice` should be `billing`), `usage` with the input and output tokens, and
 `runtime` with the settings above (`runtime.reasoning`).
 
-## Notes
-
-- Yes/no answers between 0.2 and 0.8 are moved to 0.199 or 0.801 (JevBench counts that band as wrong).
-- Inputs over 8,192 tokens keep their question-relevant parts; questions with more than 16 options (up to 256) are
-  answered in groups of 16.
-- The public serving code ([j-geuter/Jeff](https://github.com/j-geuter/Jeff)) has more options (batching, vLLM for the
-  reasoning, other limits) and other defaults; this repository fixes the settings of our JevBench results.
-
 License: Apache-2.0 (LICENSE, NOTICE). The model weights have their own licenses (see the model cards).
