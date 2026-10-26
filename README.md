@@ -1,6 +1,6 @@
 # Jeff 1.1 for JevBench
 
-**Note:** This repository is solely for submitting our models to JevBench. If you're interested in trying our models, please use our repository at https://github.com/j-geuter/Jeff#reasoning-jeff-11!
+**Note:** This repository is solely for submitting our models to JevBench. If you're interested in trying our models, please use our repository at https://github.com/j-geuter/Jeff!
 
 This repo serves Jeff 1.1 models for submission to JevBench. It contains no model code, and instead installs our serving code, [jeff-serve](https://github.com/j-geuter/Jeff), at the release we tested
 (v1.4.0). It also includes the following JevBench defaults:
